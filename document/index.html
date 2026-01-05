@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Topanda - Topological Data Analysis tool for pandas DataFrames">
+    <title>Topanda - Topological Data Analysis for Pandas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="logo.png" alt="Topanda Logo" class="logo">
+                <span class="brand-name">Topanda</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#docs">Docs</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Topological Data Analysis
+                    <span class="gradient-text">for Pandas</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Unlock hidden patterns and structures in your data with powerful topological analysis tools
+                    designed specifically for pandas DataFrames.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#installation" class="btn btn-primary">Get Started</a>
+                    <a href="#examples" class="btn btn-secondary">View Examples</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">TDA</div>
+                        <div class="stat-label">Topological Analysis</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">Pandas</div>
+                        <div class="stat-label">DataFrame Integration</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">Python</div>
+                        <div class="stat-label">Native Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need for topological data analysis</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Persistent Homology</h3>
+                    <p>Compute persistent homology diagrams to identify topological features across different scales in your data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Mapper Algorithm</h3>
+                    <p>Apply the Mapper algorithm to create topological summaries and visualizations of complex datasets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Distance Metrics</h3>
+                    <p>Support for various distance metrics including Euclidean, Manhattan, and custom distance functions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Pandas Integration</h3>
+                    <p>Seamlessly work with pandas DataFrames - no data conversion needed. Built for data scientists.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>High Performance</h3>
+                    <p>Optimized algorithms for efficient computation on large datasets with minimal memory overhead.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Visualization</h3>
+                    <p>Built-in visualization tools for persistence diagrams, barcodes, and topological networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="installation">
+        <div class="container">
+            <h2 class="section-title">Installation</h2>
+            <p class="section-subtitle">Get started in minutes</p>
+            <div class="installation-content">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">pip install</span>
+                        <button class="copy-btn" data-copy="pip install topanda">Copy</button>
+                    </div>
+                    <pre><code>pip install topanda</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-title">conda install</span>
+                        <button class="copy-btn" data-copy="conda install -c conda-forge topanda">Copy</button>
+                    </div>
+                    <pre><code>conda install -c conda-forge topanda</code></pre>
+                </div>
+                <div class="requirements">
+                    <h3>Requirements</h3>
+                    <ul>
+                        <li>Python 3.7+</li>
+                        <li>pandas 1.0+</li>
+                        <li>numpy 1.18+</li>
+                        <li>scikit-learn (optional, for some features)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section id="usage" class="usage">
+        <div class="container">
+            <h2 class="section-title">Quick Start</h2>
+            <p class="section-subtitle">Start analyzing your data in just a few lines</p>
+            <div class="usage-content">
+                <div class="code-block large">
+                    <div class="code-header">
+                        <span class="code-title">Basic Usage</span>
+                        <button class="copy-btn" data-copy='import pandas as pd
+from topanda import TopologicalAnalyzer
+
+# Load your data
+df = pd.read_csv("your_data.csv")
+
+# Initialize analyzer
+analyzer = TopologicalAnalyzer(df)
+
+# Compute persistent homology
+persistence = analyzer.compute_persistence()
+
+# Visualize results
+analyzer.plot_persistence_diagram()'>Copy</button>
+                    </div>
+                    <pre><code><span class="keyword">import</span> <span class="module">pandas</span> <span class="keyword">as</span> <span class="module">pd</span>
+<span class="keyword">from</span> <span class="module">topanda</span> <span class="keyword">import</span> <span class="class">TopologicalAnalyzer</span>
+
+<span class="comment"># Load your data</span>
+<span class="var">df</span> = <span class="module">pd</span>.<span class="function">read_csv</span>(<span class="string">"your_data.csv"</span>)
+
+<span class="comment"># Initialize analyzer</span>
+<span class="var">analyzer</span> = <span class="class">TopologicalAnalyzer</span>(<span class="var">df</span>)
+
+<span class="comment"># Compute persistent homology</span>
+<span class="var">persistence</span> = <span class="var">analyzer</span>.<span class="function">compute_persistence</span>()
+
+<span class="comment"># Visualize results</span>
+<span class="var">analyzer</span>.<span class="function">plot_persistence_diagram</span>()</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section id="examples" class="examples">
+        <div class="container">
+            <h2 class="section-title">Examples</h2>
+            <p class="section-subtitle">See topanda in action</p>
+            <div class="examples-tabs">
+                <button class="tab-btn active" data-tab="persistence">Persistence Diagrams</button>
+                <button class="tab-btn" data-tab="mapper">Mapper Algorithm</button>
+                <button class="tab-btn" data-tab="clustering">Topological Clustering</button>
+            </div>
+            <div class="tab-content active" id="persistence">
+                <div class="example-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Persistence Diagram Example</span>
+                            <button class="copy-btn" data-copy='from topanda import TopologicalAnalyzer
+import pandas as pd
+
+# Create sample data
+df = pd.DataFrame({
+    "x": [1, 2, 3, 4, 5],
+    "y": [2, 4, 1, 5, 3]
+})
+
+analyzer = TopologicalAnalyzer(df)
+diagram = analyzer.compute_persistence_diagram(max_dimension=1)
+analyzer.visualize_persistence()'>Copy</button>
+                        </div>
+                        <pre><code><span class="keyword">from</span> <span class="module">topanda</span> <span class="keyword">import</span> <span class="class">TopologicalAnalyzer</span>
+<span class="keyword">import</span> <span class="module">pandas</span> <span class="keyword">as</span> <span class="module">pd</span>
+
+<span class="comment"># Create sample data</span>
+<span class="var">df</span> = <span class="module">pd</span>.<span class="class">DataFrame</span>({
+    <span class="string">"x"</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],
+    <span class="string">"y"</span>: [<span class="number">2</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>]
+})
+
+<span class="var">analyzer</span> = <span class="class">TopologicalAnalyzer</span>(<span class="var">df</span>)
+<span class="var">diagram</span> = <span class="var">analyzer</span>.<span class="function">compute_persistence_diagram</span>(max_dimension=<span class="number">1</span>)
+<span class="var">analyzer</span>.<span class="function">visualize_persistence</span>()</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="mapper">
+                <div class="example-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Mapper Algorithm Example</span>
+                            <button class="copy-btn" data-copy='from topanda import Mapper
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+mapper = Mapper(df)
+
+# Apply mapper with custom parameters
+graph = mapper.fit_transform(
+    n_intervals=10,
+    overlap=0.3,
+    clusterer="dbscan"
+)
+
+mapper.visualize_graph()'>Copy</button>
+                        </div>
+                        <pre><code><span class="keyword">from</span> <span class="module">topanda</span> <span class="keyword">import</span> <span class="class">Mapper</span>
+<span class="keyword">import</span> <span class="module">pandas</span> <span class="keyword">as</span> <span class="module">pd</span>
+
+<span class="var">df</span> = <span class="module">pd</span>.<span class="function">read_csv</span>(<span class="string">"data.csv"</span>)
+<span class="var">mapper</span> = <span class="class">Mapper</span>(<span class="var">df</span>)
+
+<span class="comment"># Apply mapper with custom parameters</span>
+<span class="var">graph</span> = <span class="var">mapper</span>.<span class="function">fit_transform</span>(
+    n_intervals=<span class="number">10</span>,
+    overlap=<span class="number">0.3</span>,
+    clusterer=<span class="string">"dbscan"</span>
+)
+
+<span class="var">mapper</span>.<span class="function">visualize_graph</span>()</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="clustering">
+                <div class="example-content">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Topological Clustering Example</span>
+                            <button class="copy-btn" data-copy='from topanda import TopologicalClustering
+import pandas as pd
+
+df = pd.read_csv("data.csv")
+clusterer = TopologicalClustering(df)
+
+# Perform topological clustering
+labels = clusterer.fit_predict(
+    n_clusters=5,
+    metric="euclidean"
+)
+
+print(f"Found {len(set(labels))} clusters")'>Copy</button>
+                        </div>
+                        <pre><code><span class="keyword">from</span> <span class="module">topanda</span> <span class="keyword">import</span> <span class="class">TopologicalClustering</span>
+<span class="keyword">import</span> <span class="module">pandas</span> <span class="keyword">as</span> <span class="module">pd</span>
+
+<span class="var">df</span> = <span class="module">pd</span>.<span class="function">read_csv</span>(<span class="string">"data.csv"</span>)
+<span class="var">clusterer</span> = <span class="class">TopologicalClustering</span>(<span class="var">df</span>)
+
+<span class="comment"># Perform topological clustering</span>
+<span class="var">labels</span> = <span class="var">clusterer</span>.<span class="function">fit_predict</span>(
+    n_clusters=<span class="number">5</span>,
+    metric=<span class="string">"euclidean"</span>
+)
+
+<span class="function">print</span>(<span class="string">f"Found {len(set(labels))} clusters"</span>)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs" class="documentation">
+        <div class="container">
+            <h2 class="section-title">Documentation</h2>
+            <p class="section-subtitle">Comprehensive API reference and guides</p>
+            <div class="docs-grid">
+                <div class="doc-card">
+                    <h3>API Reference</h3>
+                    <p>Complete documentation of all classes, methods, and parameters.</p>
+                    <a href="#" class="doc-link">View API Docs →</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Tutorials</h3>
+                    <p>Step-by-step guides to get you started with topological data analysis.</p>
+                    <a href="#" class="doc-link">Read Tutorials →</a>
+                </div>
+                <div class="doc-card">
+                    <h3>Examples Gallery</h3>
+                    <p>Real-world examples and use cases from various domains.</p>
+                    <a href="#" class="doc-link">Browse Examples →</a>
+                </div>
+                <div class="doc-card">
+                    <h3>GitHub Repository</h3>
+                    <p>Source code, issues, and contributions welcome.</p>
+                    <a href="#" class="doc-link">Visit GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="brand-name">Topanda</span>
+                    <p>Topological Data Analysis for Pandas</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#docs">Documentation</a></li>
+                            <li><a href="#examples">Examples</a></li>
+                            <li><a href="#">GitHub</a></li>
+                            <li><a href="#">PyPI</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Community</h4>
+                        <ul>
+                            <li><a href="#">Discussions</a></li>
+                            <li><a href="#">Issues</a></li>
+                            <li><a href="#">Contributing</a></li>
+                            <li><a href="#">License</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Topanda. Built with ❤️ for the data science community.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
