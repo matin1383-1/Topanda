@@ -5,6 +5,7 @@ Topanda is a lightweight toolkit for tabular data preprocessing, distance-based 
 - **Preprocessing Pipeline**: Numeric standardization and categorical entity embeddings
 - **MetricSpace**: A unified interface for computing and querying distances in metric spaces
 - **ML Algorithms**: KNN classification and radius-based neighbor search
+- **Deep Metric Learning**: Triplet learning for optimized embedding spaces
 - **Visualization**: 2D visualization utilities for neighbor relationships
 
 ---
@@ -18,6 +19,7 @@ Topanda is a lightweight toolkit for tabular data preprocessing, distance-based 
 - ✅ Radius-based neighbor search
 - ✅ Optional distance caching for large datasets
 - ✅ 2D visualization of neighbor relationships
+- ✅ Deep metric learning approaches
 
 ---
 
@@ -66,147 +68,13 @@ Topanda/
     ├── KNN.py                     # KNN Classifier
     ├── radius_neighbors.py        # Radius-based neighbor search + visualization
     └── test_knn_improved.py       # KNN tests
+|
+|
+|
+└── Deep metric learning
 ```
 
----
 
-## Usage Examples
-
-### 1. MetricSpace: Compute Distances
-
-```python
-import pandas as pd
-from Topanda.core.metric_space import MetricSpace
-
-# Create metric space from numeric data
-df = pd.DataFrame({'x': [0, 1, 2], 'y': [0, 1, 2]})
-space = MetricSpace(df, metric='euclidean', cache_distances=True)
-
-# Get distance between two points
-dist = space.distance_between(0, 1)
-
-# Get distances from a new point to all training points
-new_point = [1.5, 1.5]
-distances = space.distance_to_points(new_point)
-```
-
-### 2. Preprocessing: Clean and Standardize Data
-
-```python
-from Topanda.PreProcessing.pipeline import DataProcessor
-
-# Auto-detect numeric/categorical columns
-processor = DataProcessor(standardize_numeric=True, embed_categorical=False)
-X, y = processor.fit_transform(df, target_col='target')
-
-# Manual column specification
-processor = DataProcessor(
-    numeric_cols=['age', 'income'],
-    categorical_cols=['gender'],
-    standardize_numeric=True,
-    embed_categorical=True,
-    embedding_dim=8
-)
-X, y = processor.fit_transform(df, target_col='target')
-```
-
-### 3. KNN Classifier: Predict with Nearest Neighbors
-
-```python
-import numpy as np
-from Topanda.core.metric_space import MetricSpace
-from Topanda.ML.KNN import KNNClassifier
-
-# Create metric space and fit KNN
-space = MetricSpace(X_train, metric='euclidean')
-knn = KNNClassifier(space, n_neighbors=5, weights='uniform')
-knn.fit(y_train)
-
-# Predict for a single new point
-prediction = knn.predict(np.array([1.0, 2.0, 3.0]))
-
-# Get classification accuracy on training data
-accuracy = knn.score(y_train)
-```
-
-### 4. Radius Search: Find Neighbors Within Distance
-
-```python
-from Topanda.ML.radius_neighbors import find_neighbors_within_radius, visualize_neighbors
-
-# Find all neighbors within radius 0.5 from a point
-point = np.array([1.5, 1.5])
-neighbor_indices, distances = find_neighbors_within_radius(
-    space, point, radius=0.5
-)
-
-# Visualize neighbors (2D data only)
-fig = visualize_neighbors(space, point, neighbor_indices, distances, radius=0.5)
-import matplotlib.pyplot as plt
-plt.show()
-```
-
----
-
-## Core Components
-
-### MetricSpace
-
-**Purpose**: Encapsulates a dataset in a metric space with precomputed or on-demand distances.
-
-**Key Methods**:
-- `distance_between(i, j)` — Distance between training points i and j
-- `distance_to_points(x_new)` — Distances from a new 1D point to all training points
-- `distances` — Property that returns full distance matrix (cached)
-
-**Supported Metrics**:
-- `euclidean` — L2 distance
-- `manhattan` — L1 distance
-- `cosine` — Cosine similarity distance
-- `minkowski` — Minkowski distance (configurable p)
-- `mahalanobis` — Mahalanobis distance
-
-### KNNClassifier
-
-**Purpose**: k-Nearest Neighbors classification using a MetricSpace.
-
-**Key Parameters**:
-- `n_neighbors` (int) — Number of neighbors to consider
-- `weights` (str) — `'uniform'` (equal votes) or `'distance'` (inverse distance weighting)
-
-**Key Methods**:
-- `fit(labels)` — Store class labels
-- `predict(point)` — Predict label for a single new point (1D array)
-- `score(true_labels)` — Classification accuracy on training data
-
-### radius_neighbors
-
-**Purpose**: Find neighbors within a fixed radius and visualize them.
-
-**Key Functions**:
-- `find_neighbors_within_radius(metric_space, point, radius)` — Returns sorted neighbor indices and distances
-- `visualize_neighbors(metric_space, point, neighbor_indices, distances, radius)` — 2D scatter plot with radius circle
-
-**Requirements**:
-- Only supports 2D data for visualization
-- Raises `ValueError` if data has ≠ 2 features
-
-### DataProcessor (Preprocessing)
-
-**Purpose**: Standardize numeric features and embed categorical features.
-
-**Key Parameters**:
-- `numeric_cols` (list, optional) — Columns to standardize; auto-detected if None
-- `categorical_cols` (list, optional) — Columns to embed; auto-detected if None
-- `standardize_numeric` (bool) — Apply z-score normalization
-- `embed_categorical` (bool) — Use PyTorch entity embeddings
-- `embedding_dim` (int) — Dimension of categorical embeddings
-
-**Key Methods**:
-- `fit_transform(df, target_col)` — Fit and transform; returns (X, y)
-- `transform(df)` — Transform using fitted parameters
-
----
 
 ## Dependencies
 
@@ -226,24 +94,7 @@ Install all:
 pip install -r requirements.txt
 ```
 
----
 
-## Testing
-
-Run the test suite:
-
-```bash
-# KNN tests (comprehensive)
-python Topanda/ML/test_knn_improved.py
-
-# Preprocessing tests
-python -m Topanda.PreProcessing.test_preprocessing
-
-# All tests with pytest
-pytest Topanda/ -v
-```
-
----
 
 ## Notes & Troubleshooting
 
