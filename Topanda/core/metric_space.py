@@ -4,9 +4,9 @@ import numpy as np
 from scipy.spatial.distance import cdist
 from typing import Any, Dict, Optional, Union
 
-from metrics import MetricFactory
-from cache import DistanceCache
-from validators import validate_numeric_dataframe, validate_metric_name
+from .metrics import MetricFactory
+from .cache import DistanceCache
+from .validators import validate_numeric_dataframe, validate_metric_name
 
 
 class MetricSpace:

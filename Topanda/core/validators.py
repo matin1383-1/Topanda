@@ -3,7 +3,7 @@
 import numpy as np
 import pandas as pd
 
-from metrics import MetricFactory
+from .metrics import MetricFactory
 
 def validate_numeric_dataframe(df: pd.DataFrame):
     non_numeric = df.select_dtypes(exclude=[np.number]).columns.tolist()

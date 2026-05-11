@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from categorical_processor import CategoricalProcessor
+from .categorical_processor import CategoricalProcessor
 
 X = pd.DataFrame({
     'color': ['red', 'blue', 'red', 'green', 'blue'],

@@ -5,9 +5,9 @@ from typing import List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from categorical_processor import CategoricalProcessor
-from numeric_processor import NumericProcessor
-from validator import (
+from .categorical_processor import CategoricalProcessor
+from .numeric_processor import NumericProcessor
+from .validator import (
     check_target_column,
     identify_column_types,
     resolve_column_types,

@@ -1,7 +1,7 @@
 """Machine learning module for topanda (metric-space-based models)."""
 
-from KNN import KNNClassifier
-from radius_neighbors import (
+from .KNN import KNNClassifier
+from .radius_neighbors import (
     find_neighbors_within_radius,
     visualize_neighbors,
 )

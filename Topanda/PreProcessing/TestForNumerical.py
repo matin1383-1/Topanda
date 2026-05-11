@@ -11,7 +11,7 @@ print("Original data:")
 print(X)
 
 
-from numeric_processor import NumericProcessor  
+from .numeric_processor import NumericProcessor  
 
 processor = NumericProcessor(standardize=True)
 

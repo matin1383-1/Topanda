@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from pipeline import DataProcessor
+from .pipeline import DataProcessor
 
 
 def test_basic_preprocessing_auto_detection():

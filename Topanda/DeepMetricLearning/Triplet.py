@@ -17,7 +17,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from Topanda.core.metric_space import MetricSpace
+from ..core.metric_space import MetricSpace
 
 
 class _MLPEmbedding(nn.Module):

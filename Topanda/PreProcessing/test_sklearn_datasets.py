@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.datasets import load_iris, load_wine, load_breast_cancer
 
-from pipeline import DataProcessor
+from .pipeline import DataProcessor
 
 
 def test_sklearn_iris_dataset():
