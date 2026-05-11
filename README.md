@@ -1,102 +1,128 @@
 # Topanda
 
-Topanda is a lightweight toolkit for tabular data preprocessing, distance-based (metric-space) machine learning workflows, and nearest-neighbor algorithms. It provides:
-
-- **Preprocessing Pipeline**: Numeric standardization and categorical entity embeddings
-- **MetricSpace**: A unified interface for computing and querying distances in metric spaces
-- **ML Algorithms**: KNN classification and radius-based neighbor search
-- **Deep Metric Learning**: Triplet learning for optimized embedding spaces
-- **Visualization**: 2D visualization utilities for neighbor relationships
-
----
+A lightweight toolkit for tabular data preprocessing, metric-space machine learning, and nearest-neighbor algorithms.
 
 ## Features
 
-- ✅ Numeric standardization (z-score normalization)
-- ✅ Categorical entity embeddings via PyTorch
-- ✅ Multiple distance metrics (Euclidean, Manhattan, Cosine, Minkowski, Mahalanobis)
-- ✅ KNN Classifier with uniform and distance-weighted voting
-- ✅ Radius-based neighbor search
-- ✅ Optional distance caching for large datasets
-- ✅ 2D visualization of neighbor relationships
-- ✅ Deep metric learning approaches
+✅ **Data Preprocessing**: Numeric standardization & categorical embeddings (PyTorch)  
+✅ **MetricSpace**: Unified distance computation with multiple metrics  
+✅ **ML Algorithms**: KNN classification, radius-based search, triplet learning  
+✅ **Distance Metrics**: Euclidean, Manhattan, Cosine, Minkowski, Mahalanobis  
+✅ **Performance**: Optional LRU distance caching for large datasets  
+✅ **Visualization**: 2D neighbor relationship plots  
 
 ---
 
-## Quickstart
-
-1. **Install dependencies:**
+## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. **Run tests:**
+**Dependencies**: numpy, pandas, scikit-learn, torch, scipy, matplotlib
 
-```bash
-# KNN tests
-python Topanda/ML/test_knn_improved.py
+---
 
-# Preprocessing tests
-python -m Topanda.PreProcessing.test_preprocessing
+## Quick Start
 
-# Core tests (if available)
-pytest Topanda/core/ -q
+### 1. Preprocess Data
+
+```python
+from Topanda import DataProcessor
+import pandas as pd
+
+# Load your data
+df = pd.DataFrame({
+    'age': [25, 30, 35],
+    'salary': [50000, 60000, 75000],
+    'city': ['NYC', 'LA', 'NYC'],
+    'target': [0, 1, 1]
+})
+
+# Automatically standardize numeric & embed categorical features
+processor = DataProcessor(embed_categorical=True, embedding_dim=10)
+X_processed, y = processor.fit_transform(df, target_col='target')
+```
+
+### 2. Build Metric Space
+
+```python
+from Topanda import MetricSpace
+
+# Create metric space with your processed data
+ms = MetricSpace(X_processed, metric='euclidean', cache_distances=True)
+
+# Query distances
+distance = ms.distance_between(0, 1)
+distances_to_new_point = ms.distance_to_points([25, 50000, ...])
+```
+
+### 3. KNN Classification
+
+```python
+from Topanda import KNNClassifier
+
+# Train KNN classifier
+knn = KNNClassifier(ms, n_neighbors=5, weights='uniform')
+knn.fit(y)
+
+# Predict on new point
+prediction = knn.predict([26, 52000, ...])
+accuracy = knn.score(y)
+```
+
+### 4. Radius-based Neighbor Search
+
+```python
+from Topanda import find_neighbors_within_radius
+
+# Find all neighbors within radius
+neighbor_indices, distances = find_neighbors_within_radius(ms, point=0, radius=5.0)
+
+# Visualize (2D data only)
+visualize_neighbors(ms, point=0, neighbor_indices=neighbor_indices, 
+                   distances=distances, radius=5.0)
+```
+
+### 5. Deep Metric Learning
+
+```python
+from Topanda import TripletLearner
+
+# Learn optimized embeddings
+learner = TripletLearner(embedding_dim=16, margin=1.0, epochs=20)
+learner.fit(X_train, y_train)
+embeddings = learner.transform(X_test)
 ```
 
 ---
 
-## Project Structure
+## Package Structure
 
 ```
 Topanda/
-├── core/                          # Core metric space utilities
-│   ├── metric_space.py            # MetricSpace class (distances, queries)
-│   ├── metrics.py                 # Metric factory and metric implementations
-│   ├── cache.py                   # DistanceCache LRU cache
-│   ├── validators.py              # Input validation utilities
-│   └── example_metric_space.py    # Example usage
-│
-├── PreProcessing/                 # Data preprocessing pipeline
-│   ├── pipeline.py                # DataProcessor orchestrator
-│   ├── numeric_processor.py       # Numeric standardization
-│   ├── categorical_processor.py   # PyTorch entity embeddings
-│   ├── validator.py               # Column validation
-│   └── test_*.py                  # Preprocessing tests
-│
-└── ML/                            # Machine learning algorithms
-    ├── KNN.py                     # KNN Classifier
-    ├── radius_neighbors.py        # Radius-based neighbor search + visualization
-    └── test_knn_improved.py       # KNN tests
-|
-|
-|
-└── Deep metric learning
+├── core/                 # MetricSpace, distance metrics, caching
+├── PreProcessing/        # Data standardization & embeddings
+├── ML/                   # KNN, radius search, visualization
+└── DeepMetricLearning/   # Triplet loss learning
 ```
 
+---
 
+## Import Styles
 
-## Dependencies
-
-```
-numpy>=1.21
-pandas>=1.3
-scikit-learn>=0.24
-torch>=1.9
-scipy>=1.0
-pytest
-matplotlib
+**From main package:**
+```python
+from Topanda import MetricSpace, KNNClassifier, DataProcessor, TripletLearner
 ```
 
-Install all:
-
-```bash
-pip install -r requirements.txt
+**From submodules:**
+```python
+from Topanda.core import MetricSpace, MetricFactory
+from Topanda.ML import KNNClassifier, find_neighbors_within_radius
+from Topanda.PreProcessing import DataProcessor
+from Topanda.DeepMetricLearning import TripletLearner
 ```
-
-
-
-## Notes & Troubleshooting
 
 - **PyTorch**: Required only for `CategoricalProcessor` embeddings. If disabled, PyTorch is not needed.
 - **MetricSpace validation**: Only numeric data is accepted. Use `DataProcessor` to clean/standardize data first.
