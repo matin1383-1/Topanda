@@ -35,48 +35,15 @@ pip install -r requirements.txt
 
 ```bash
 # KNN tests
-python Topanda/ML/test_knn_improved.py
-
-# Preprocessing tests
-python -m Topanda.PreProcessing.test_preprocessing
-
-# Core tests (if available)
-pytest Topanda/core/ -q
+python Tests/Test.py
 ```
 
 ---
 
-## Project Structure
-
-```
-Topanda/
-├── core/                          # Core metric space utilities
-│   ├── metric_space.py            # MetricSpace class (distances, queries)
-│   ├── metrics.py                 # Metric factory and metric implementations
-│   ├── cache.py                   # DistanceCache LRU cache
-│   ├── validators.py              # Input validation utilities
-│   └── example_metric_space.py    # Example usage
-│
-├── PreProcessing/                 # Data preprocessing pipeline
-│   ├── pipeline.py                # DataProcessor orchestrator
-│   ├── numeric_processor.py       # Numeric standardization
-│   ├── categorical_processor.py   # PyTorch entity embeddings
-│   ├── validator.py               # Column validation
-│   └── test_*.py                  # Preprocessing tests
-│
-└── ML/                            # Machine learning algorithms
-    ├── KNN.py                     # KNN Classifier
-    ├── radius_neighbors.py        # Radius-based neighbor search + visualization
-    └── test_knn_improved.py       # KNN tests
-|
-|
-|
-└── Deep metric learning
-```
-
 ## Triplet Learning Results
 
 The test suite (`Tests/Test.py`) demonstrates the effectiveness of triplet learning for metric space optimization. Triplet learning improves KNN classification accuracy by learning embeddings where similar samples are closer together.
+in this method we don't use predefined metrics , instead we build a suitable and customized metric for any labeled dataset . 
 
 ### Test Results Summary
 
@@ -112,6 +79,34 @@ Each plot shows:
 - **Separation Ratio**: Quantitative measure of class separability
 
 ---
+
+## Project Structure
+
+```
+Topanda/
+├── core/                          # Core metric space utilities
+│   ├── metric_space.py            # MetricSpace class (distances, queries)
+│   ├── metrics.py                 # Metric factory and metric implementations
+│   ├── cache.py                   # DistanceCache LRU cache
+│   ├── validators.py              # Input validation utilities
+│   └── example_metric_space.py    # Example usage
+│
+├── PreProcessing/                 # Data preprocessing pipeline
+│   ├── pipeline.py                # DataProcessor orchestrator
+│   ├── numeric_processor.py       # Numeric standardization
+│   ├── categorical_processor.py   # PyTorch entity embeddings
+│   ├── validator.py               # Column validation
+│   └── test_*.py                  # Preprocessing tests
+│
+└── ML/                            # Machine learning algorithms
+    ├── KNN.py                     # KNN Classifier
+    ├── radius_neighbors.py        # Radius-based neighbor search + visualization
+    └── test_knn_improved.py       # KNN tests
+|
+|
+|
+└── Deep metric learning
+```
 
 ## Dependencies
 
