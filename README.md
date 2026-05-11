@@ -40,6 +40,22 @@ python Tests/Test.py
 
 ---
 
+## Load models from the main directory
+
+If you are running from the repository root, import from the `Topanda` package directly:
+
+```python
+from Topanda import KNNClassifier, DataProcessor, TripletLearner
+
+processor = DataProcessor(...)
+model = KNNClassifier(...)
+learner = TripletLearner(...)
+```
+
+This works when your current working directory is the project root and `Topanda/` is on the Python path.
+
+---
+
 ## Triplet Learning Results
 
 The test suite (`Tests/Test.py`) demonstrates the effectiveness of triplet learning for metric space optimization. Triplet learning improves KNN classification accuracy by learning embeddings where similar samples are closer together.
@@ -86,22 +102,21 @@ Each plot shows:
 Topanda/
 ├── core/                          # Core metric space utilities
 │   ├── metric_space.py            # MetricSpace class (distances, queries)
-│   ├── metrics.py                 # Metric factory and metric implementations
+│   ├── metrics.py                 # Metric factory and metric 
 │   ├── cache.py                   # DistanceCache LRU cache
 │   ├── validators.py              # Input validation utilities
-│   └── example_metric_space.py    # Example usage
+│
 │
 ├── PreProcessing/                 # Data preprocessing pipeline
 │   ├── pipeline.py                # DataProcessor orchestrator
 │   ├── numeric_processor.py       # Numeric standardization
 │   ├── categorical_processor.py   # PyTorch entity embeddings
 │   ├── validator.py               # Column validation
-│   └── test_*.py                  # Preprocessing tests
+│
 │
 └── ML/                            # Machine learning algorithms
     ├── KNN.py                     # KNN Classifier
     ├── radius_neighbors.py        # Radius-based neighbor search + visualization
-    └── test_knn_improved.py       # KNN tests
 |
 |
 |
@@ -125,9 +140,6 @@ Install all:
 ```bash
 pip install -r requirements.txt
 ```
-
-
-
 ## Notes & Troubleshooting
 
 - **PyTorch**: Required only for `CategoricalProcessor` embeddings. If disabled, PyTorch is not needed.
