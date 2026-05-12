@@ -1,4 +1,6 @@
-<img src="Topanda.png" alt="Topanda Logo" width="250">
+<p align="center">
+    <img src="Topanda.png" alt="Topanda Logo" width="350" >
+</p>
 
 # Topanda
 
