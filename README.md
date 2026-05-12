@@ -1,4 +1,4 @@
-![Topanda Logo](Topanda.png)
+<img src="Topanda.png" alt="Topanda Logo" width="250">
 
 # Topanda
 
