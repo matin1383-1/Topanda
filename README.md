@@ -1,3 +1,5 @@
+![Topanda Logo](Topanda.png)
+
 # Topanda
 
 Topanda is a lightweight toolkit for tabular data preprocessing, distance-based (metric-space) machine learning workflows, and nearest-neighbor algorithms. It provides:
