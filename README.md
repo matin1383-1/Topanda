@@ -77,20 +77,25 @@ in this method we don't use predefined metrics , instead we build a suitable and
 ### Visualization Examples
 
 #### Iris Dataset
-![Iris Triplet Analysis](Tests/iris_triplet_analysis.png)
+![Iris Triplet Analysis](Results/iris_triplet_analysis.png)
 *KNN accuracy comparison, t-SNE visualizations, and distance distributions for the Iris dataset.*
 
 #### Wine Dataset
-![Wine Triplet Analysis](Tests/wine_triplet_analysis.png)
+![Wine Triplet Analysis](Results/wine_triplet_analysis.png)
 *KNN accuracy comparison, t-SNE visualizations, and distance distributions for the Wine dataset.*
 
 #### Digits Dataset
-![Digits Triplet Analysis](Tests/digits_triplet_analysis.png)
+![Digits Triplet Analysis](Results/digits_triplet_analysis.png)
 *KNN accuracy comparison, t-SNE visualizations, and distance distributions for the Digits dataset.*
 
 #### Breast Cancer Dataset
-![Breast Cancer Triplet Analysis](Tests/breast_cancer_triplet_analysis.png)
+![Breast Cancer Triplet Analysis](Results/breast_cancer_triplet_analysis.png)
 *KNN accuracy comparison, t-SNE visualizations, and distance distributions for the Breast Cancer dataset.*
+
+#### CoverType Dataset
+![CoverType Triplet Analysis](Results/covertype_knn_accuracy.png)
+
+
 
 Each plot shows:
 - **KNN Accuracy Comparison**: Performance improvement after triplet learning
