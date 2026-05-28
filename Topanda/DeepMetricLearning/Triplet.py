@@ -1,6 +1,3 @@
-
-
-
 #-------------------------------------------------------------------------------------------------------------
 """codes of this section is based on the implementation of pytorch deep metric learning
    library in https://github.com/KevinMusgrave/pytorch-metric-learning/blob/master/src/pytorch_metric_learning/losses/triplet_margin_loss.py
