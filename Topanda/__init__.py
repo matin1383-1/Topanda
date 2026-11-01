@@ -9,7 +9,7 @@ Main Components:
   - deep_metric_learning: Triplet learning for optimized embeddings
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 # Core module
 from .core import (
@@ -33,6 +33,10 @@ from .ML import (
 # Deep Metric Learning module
 from .DeepMetricLearning import (
     TripletLearner,
+    HardNegativeTopanda,
+    GPTopanda,
+    GPHTopanda,
+    TrainingConfig,
 )
 
 __all__ = [
@@ -48,4 +52,8 @@ __all__ = [
     "visualize_neighbors",
     # Deep Metric Learning
     "TripletLearner",
+    "HardNegativeTopanda",
+    "GPTopanda",
+    "GPHTopanda",
+    "TrainingConfig",
 ]

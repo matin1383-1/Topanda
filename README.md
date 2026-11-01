@@ -58,6 +58,53 @@ learner = TripletLearner(...)
 
 This works when your current working directory is the project root and `Topanda/` is on the Python path.
 
+## Hard-negative and geometry-preserving pipelines
+
+Topanda also exposes three optional deep metric-learning pipelines:
+
+| Pipeline | What it trains | Negative selection |
+|---|---|---|
+| `HardNegativeTopanda` | A Topanda encoder from scratch | Closest different-class candidate |
+| `GPTopanda` | A residual correction over a frozen fitted Topanda model | Random different-class candidate |
+| `GPHTopanda` | A residual correction over a frozen fitted Topanda model | Closest different-class candidate |
+
+GP and GP-H operate directly on the representation learned by the original
+`TripletLearner`. Their residual layer starts as an exact identity mapping, and
+their preservation loss penalizes unnecessary movement away from the original
+embedding. The original model remains frozen and unchanged.
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+from Topanda import GPHTopanda, TrainingConfig, TripletLearner
+
+# X_train and X_test must use preprocessing fitted on training data only.
+base = TripletLearner(embedding_dim=16).fit(X_train, y_train)
+config = TrainingConfig(
+    strategy="hard",
+    preservation_lambda=1.0,
+    epochs=20,
+)
+pipeline = GPHTopanda(base, config).fit(X_train, y_train)
+
+classifier = KNeighborsClassifier(n_neighbors=5).fit(
+    pipeline.transform(X_train), y_train
+)
+predictions = classifier.predict(pipeline.transform(X_test))
+```
+
+The strategy is fixed by the pipeline class: `GPTopanda` uses random negatives,
+while `GPHTopanda` uses hard negatives. Hard mining searches a balanced candidate
+pool in the current embedding. It does not require labels during `transform()`.
+Every class must contain at least two training observations; batch size and
+candidate-pool size must be at least the number of classes.
+
+Run the extension checks and example from the repository root:
+
+```bash
+python -m unittest discover -s Tests -p "test_extensions.py" -v
+python Examples/compare_extensions.py
+```
+
 ---
 
 ## Triplet Learning Results
